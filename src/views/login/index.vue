@@ -1,13 +1,15 @@
 <template>
   <el-row class="login-wrapper">
-    <el-col :span="16"
+    <el-col :lg="16"
+            :md="12"
             class="left-wrapper">
       <div class="text-content">
         <div class="text-head">欢迎光临</div>
         <div class="text-content">电商——后台管理系统</div>
       </div>
     </el-col>
-    <el-col :span="8"
+    <el-col :lg="8"
+            :md="12"
             class="right-wrapper">
       <el-form :model="form"
                label-width="60px"
@@ -20,11 +22,23 @@
         </div>
         <el-form-item label="账号：">
           <el-input v-model="form.username"
-                    placeholder="请输入账号" />
+                    placeholder="请输入账号">
+            <template #prefix>
+              <el-icon class="el-input__icon">
+                <User />
+              </el-icon>
+            </template>
+          </el-input>
         </el-form-item>
         <el-form-item label="密码：">
           <el-input v-model="form.password"
-                    placeholder="请输入密码" />
+                    placeholder="请输入密码">
+            <template #prefix>
+              <el-icon class="el-input__icon">
+                <Lock />
+              </el-icon>
+            </template>
+          </el-input>
         </el-form-item>
         <div class="btn-wrapper">
           <el-button type="primary"
@@ -37,6 +51,7 @@
   </el-row>
 </template>
 <script setup>
+import { User, Lock } from '@element-plus/icons-vue'
 import { reactive } from 'vue'
 
 const form = reactive({
@@ -76,7 +91,7 @@ const onSubmit = () => {
     flex-direction: column;
     text-align: center;
     .form-wrapper {
-      width: 75%;
+      width: 70%;
       margin: 0 auto;
       .header-text {
         margin: 20px 0px;
