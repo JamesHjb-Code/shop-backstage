@@ -11,7 +11,7 @@
     <el-col :lg="8"
             :md="12"
             class="right-wrapper">
-      <el-form :model="form"
+      <el-form :model="form" ref="formRef" :rules="rules" hide-required-asterisk="false"
                label-width="60px"
                class="form-wrapper">
         <div class="header-text">欢迎回来</div>
@@ -20,7 +20,7 @@
           <div class="text">登录</div>
           <div class="line"></div>
         </div>
-        <el-form-item label="账号：">
+        <el-form-item label="账号：" prop="username">
           <el-input v-model="form.username"
                     placeholder="请输入账号">
             <template #prefix>
@@ -30,9 +30,12 @@
             </template>
           </el-input>
         </el-form-item>
-        <el-form-item label="密码：">
+        <el-form-item label="密码：" prop="password">
           <el-input v-model="form.password"
-                    placeholder="请输入密码">
+                    type="password"
+                    placeholder="请输入密码"
+                    show-password
+                    >
             <template #prefix>
               <el-icon class="el-input__icon">
                 <Lock />
@@ -52,15 +55,40 @@
 </template>
 <script setup>
 import { User, Lock } from '@element-plus/icons-vue'
-import { reactive } from 'vue'
+import { ref,reactive } from 'vue'
 
 const form = reactive({
   username: '',
   password: '',
 })
+// 表单验证
+const rules ={
+  username:[
+    {
+      required:true,
+      message:'用户名不能为空',
+      trigger:'blur'
+    },
+  ],
+  password:[
+  {
+      required:true,
+      message:'密码不能为空',
+      trigger:'blur'
+    },
+  ]
+}
+
+// 获取登录数据
+const formRef = ref(null)
 
 const onSubmit = () => {
-  console.log('submit!')
+  formRef.value.validate((valid)=>{
+    if(!valid){
+      return false
+    }
+    console.log('验证通过')
+  })
 }
 </script>
 <style lang="scss" scoped>
