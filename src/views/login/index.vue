@@ -11,7 +11,10 @@
     <el-col :lg="8"
             :md="12"
             class="right-wrapper">
-      <el-form :model="form" ref="formRef" :rules="rules" hide-required-asterisk="false"
+      <el-form :model="form"
+               ref="formRef"
+               :rules="rules"
+               hide-required-asterisk="false"
                label-width="60px"
                class="form-wrapper">
         <div class="header-text">欢迎回来</div>
@@ -20,7 +23,8 @@
           <div class="text">登录</div>
           <div class="line"></div>
         </div>
-        <el-form-item label="账号：" prop="username">
+        <el-form-item label="账号："
+                      prop="username">
           <el-input v-model="form.username"
                     placeholder="请输入账号">
             <template #prefix>
@@ -30,12 +34,12 @@
             </template>
           </el-input>
         </el-form-item>
-        <el-form-item label="密码：" prop="password">
+        <el-form-item label="密码："
+                      prop="password">
           <el-input v-model="form.password"
                     type="password"
                     placeholder="请输入密码"
-                    show-password
-                    >
+                    show-password>
             <template #prefix>
               <el-icon class="el-input__icon">
                 <Lock />
@@ -55,39 +59,72 @@
 </template>
 <script setup>
 import { User, Lock } from '@element-plus/icons-vue'
-import { ref,reactive } from 'vue'
+import { ElNotification } from 'element-plus'
+import { ref, reactive } from 'vue'
+import { useRouter} from 'vue-router'
+import { login } from '~/api/login'
+
+const router = useRouter()
 
 const form = reactive({
   username: '',
   password: '',
 })
 // 表单验证
-const rules ={
-  username:[
+const rules = {
+  username: [
     {
-      required:true,
-      message:'用户名不能为空',
-      trigger:'blur'
+      required: true,
+      message: '用户名不能为空',
+      trigger: 'blur',
     },
   ],
-  password:[
-  {
-      required:true,
-      message:'密码不能为空',
-      trigger:'blur'
+  password: [
+    {
+      required: true,
+      message: '密码不能为空',
+      trigger: 'blur',
     },
-  ]
+  ],
 }
 
 // 获取登录数据
 const formRef = ref(null)
 
 const onSubmit = () => {
-  formRef.value.validate((valid)=>{
-    if(!valid){
+  formRef.value.validate((valid) => {
+    if (!valid) {
       return false
     }
-    console.log('验证通过')
+    login(form)
+      .then((res) => {
+        // 提示成功
+        const result = res.data
+        if (result.success) {
+          ElNotification({
+            title: '提示',
+            message: '登录成功',
+            type: 'success',
+            duration: 3000,
+          })
+          router.push('/')
+        } else {
+          ElNotification({
+            title: '提示',
+            message: result.msg,
+            type: 'error',
+            duration: 3000,
+          })
+        }
+      })
+      .catch((err) => {
+        ElNotification({
+          title: '提示',
+          message: err.response.data || '请求失败',
+          type: 'error',
+          duration: 3000,
+        })
+      })
   })
 }
 </script>
