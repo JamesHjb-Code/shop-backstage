@@ -35,31 +35,31 @@ let loginControll = {
                 success: true,
                 data: result,
               })
-            }else{
+            } else {
               // 查询用户名是否存在
-              connection.query(sql.getInfoByName,[req.query.username],(err,data)=>{
-                if(err){
+              connection.query(sql.getInfoByName, [req.query.username], (err, data) => {
+                if (err) {
                   return res.lose(err)
-                }else{
-                  if(data?.length === 0 ){
+                } else {
+                  if (data?.length === 0) {
                     return res.json({
-                      code:403,
-                      msg:'用户名不存在',
-                      success:false,
+                      code: 403,
+                      msg: '用户名不存在',
+                      success: false,
                     })
-                  }else{
+                  } else {
                     // 密码是否错误
-                    if(req.query.username === data[0].username && req.query.password !== data[0].password){
+                    if (req.query.username === data[0].username && req.query.password !== data[0].password) {
                       return res.json({
-                        code:403,
-                        msg:'密码错误',
-                        success:false,
+                        code: 403,
+                        msg: '密码错误',
+                        success: false,
                       })
-                    }else{
+                    } else {
                       return res.json({
                         code: 400,
                         msg: '系统错误'
-                    })
+                      })
                     }
                   }
                 }
