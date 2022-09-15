@@ -13,7 +13,7 @@ const tokenConfig = {
 }
 
 // 登录-生成token
-const setToken = (id,username,rule)=>{
+const setToken = (id,username)=>{
   return new Promise((resolve,rejcet)=>{
     try{
       /**
@@ -23,7 +23,6 @@ const setToken = (id,username,rule)=>{
       const params = {
         id:id,
         username:username,
-        rule:rule
       }
       const token = jwt.sign(params,tokenConfig.jwtSecreKey,{expiresIn:tokenConfig.expireIn})
       resolve(token)
@@ -33,4 +32,4 @@ const setToken = (id,username,rule)=>{
   })
 }
 
-exports.module = setToken
+module.exports ={ setToken }

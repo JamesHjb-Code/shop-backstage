@@ -6,12 +6,11 @@
 const mysql = require('mysql') //引入mysql模块
 const mysqlConfig = require('../../db/mysql') // 引入mysql连接配置
 const sql = require('./sql') // 引入封装sql语句
-var pool = mysql.createPool(mysqlConfig) // 创建mysql连接池
-
+const pool = mysql.createPool(mysqlConfig) // 创建mysql连接池
+const createToken = require('../../token/index') 
 let loginControll = {
   // 验证登录
   checkLogin: (req, res, next) => {
-    console.log(req.query)
     // 表单不能为空
     if (req.query.username === '' || req.query.password === '') {
       return res.json({
@@ -29,11 +28,13 @@ let loginControll = {
           }
           else {
             if (result.length !== 0) {
-              res.json({
-                code: 200,
-                msg: '登录成功',
-                success: true,
-                data: result,
+              createToken.setToken(result[0].id,result[0].useranme).then(token=>{
+                res.json({
+                  code: 200,
+                  msg: '登录成功',
+                  token:'Bearer' + token,
+                  success: true,
+                })
               })
             } else {
               // 查询用户名是否存在
