@@ -51,7 +51,7 @@
           <el-button type="primary"
                      round
                      class="btn"
-                     @click="onSubmit">登 录</el-button>
+                     @click="onSubmit" :loading="loading">登 录</el-button>
         </div>
       </el-form>
     </el-col>
@@ -91,12 +91,13 @@ const rules = {
 
 // 获取登录数据
 const formRef = ref(null)
-
+const loading = ref(false)
 const onSubmit = () => {
   formRef.value.validate((valid) => {
     if (!valid) {
       return false
     }
+    loading.value = true
     login(form)
       .then((res) => {
         // 提示成功
@@ -121,8 +122,9 @@ const onSubmit = () => {
             duration: 3000,
           })
         }
+      }).finally(()=>{
+        loading.value = false
       })
-
   })
 }
 </script>
