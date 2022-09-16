@@ -63,6 +63,7 @@ import { ElNotification } from 'element-plus'
 import { ref, reactive } from 'vue'
 import { useRouter} from 'vue-router'
 import { login } from '~/api/login'
+import { useCookies } from '@vueuse/integrations/useCookies'
 
 const router = useRouter()
 
@@ -107,6 +108,10 @@ const onSubmit = () => {
             type: 'success',
             duration: 3000,
           })
+          // 存储token和用户相关信息
+          const cookie = useCookies()
+          cookie.set("token",result.token)
+          // 跳转到首页
           router.push('/')
         } else {
           ElNotification({
