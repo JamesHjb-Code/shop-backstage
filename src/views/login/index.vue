@@ -62,8 +62,8 @@ import { User, Lock } from '@element-plus/icons-vue'
 import { ref, reactive } from 'vue'
 import { useRouter} from 'vue-router'
 import { login } from '~/api/login'
-import { useCookies } from '@vueuse/integrations/useCookies'
-import { ElNotification } from 'element-plus'
+import { prompt } from '~/compontool/util'
+import { setToken } from '~/compontool/token'
 
 const router = useRouter()
 
@@ -103,24 +103,13 @@ const onSubmit = () => {
         // 提示成功
         console.log(res)
         if (res.success) {
-          ElNotification({
-            title: '提示',
-            message: '登录成功',
-            type: 'success',
-            duration: 3000,
-          })
-          // 存储token和用户相关信息
-          const cookie = useCookies()
-          cookie.set("token",res.token)
+          prompt('登录成功','success')
+          // 存储token
+          setToken(res.token)
           // 跳转到首页
           router.push('/')
         } else {
-          ElNotification({
-            title: '提示',
-            message: res.msg,
-            type: 'error',
-            duration: 3000,
-          })
+          prompt(res.msg,'error')
         }
       }).finally(()=>{
         loading.value = false

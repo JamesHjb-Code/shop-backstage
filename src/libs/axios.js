@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { ElNotification } from 'element-plus'
-import { useCookies } from '@vueuse/integrations/useCookies'
+import { prompt } from '~/compontool/util'
+import { getToken } from '~/compontool/token'
 
 // axios创建实例
 const service = axios.create({
@@ -11,8 +11,7 @@ const service = axios.create({
 // 添加请求拦截器
 service.interceptors.request.use(config => {
   // 往header自动添加token
-  const cookie = useCookies()
-  const token = cookie.get("token")
+  const token = getToken()
   if(token){
     config.headers["token"] = token
   }
@@ -29,12 +28,7 @@ service.interceptors.response.use(res => {
  return res.data
 }, err => {
   // 服务器响应发生错误时的处理
-  ElNotification({
-    title: '提示',
-    message: err.response.data || '请求失败',
-    type: 'error',
-    duration: 3000,
-  })
+  prompt(err.response.data || '请求失败','error')
   return Promise.reject(err)
 })
 
