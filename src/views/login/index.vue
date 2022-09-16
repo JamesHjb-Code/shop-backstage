@@ -61,10 +61,11 @@
 import { User, Lock } from '@element-plus/icons-vue'
 import { ref, reactive } from 'vue'
 import { useRouter} from 'vue-router'
+import { useStore } from 'vuex'
 import { login } from '~/api/login'
 import { prompt } from '~/compontool/util'
 import { setToken } from '~/compontool/token'
-
+const store = useStore()
 const router = useRouter()
 
 const form = reactive({
@@ -100,12 +101,12 @@ const onSubmit = () => {
     loading.value = true
     login(form)
       .then((res) => {
-        // 提示成功
-        console.log(res)
+        // 登录成功
         if (res.success) {
           prompt('登录成功','success')
           // 存储token
           setToken(res.token)
+          store.commit("SET_USERINFO",res)
           // 跳转到首页
           router.push('/')
         } else {
