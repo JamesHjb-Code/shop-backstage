@@ -4,6 +4,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import router from './router'
 import store from './store'
+import "./guardPermission"
 // 挂载到应用上
 const app = createApp(App)
 
