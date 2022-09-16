@@ -59,11 +59,11 @@
 </template>
 <script setup>
 import { User, Lock } from '@element-plus/icons-vue'
-import { ElNotification } from 'element-plus'
 import { ref, reactive } from 'vue'
 import { useRouter} from 'vue-router'
 import { login } from '~/api/login'
 import { useCookies } from '@vueuse/integrations/useCookies'
+import { ElNotification } from 'element-plus'
 
 const router = useRouter()
 
@@ -100,8 +100,8 @@ const onSubmit = () => {
     login(form)
       .then((res) => {
         // 提示成功
-        const result = res.data
-        if (result.success) {
+        console.log(res)
+        if (res.success) {
           ElNotification({
             title: '提示',
             message: '登录成功',
@@ -110,26 +110,19 @@ const onSubmit = () => {
           })
           // 存储token和用户相关信息
           const cookie = useCookies()
-          cookie.set("token",result.token)
+          cookie.set("token",res.token)
           // 跳转到首页
           router.push('/')
         } else {
           ElNotification({
             title: '提示',
-            message: result.msg,
+            message: res.msg,
             type: 'error',
             duration: 3000,
           })
         }
       })
-      .catch((err) => {
-        ElNotification({
-          title: '提示',
-          message: err.response.data || '请求失败',
-          type: 'error',
-          duration: 3000,
-        })
-      })
+
   })
 }
 </script>
