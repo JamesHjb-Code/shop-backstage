@@ -7,7 +7,7 @@ const mysql = require('mysql') //引入mysql模块
 const mysqlConfig = require('../../db/mysql') // 引入mysql连接配置
 const sql = require('./sql') // 引入封装sql语句
 const pool = mysql.createPool(mysqlConfig) // 创建mysql连接池
-const createToken = require('../../token/index') 
+const createToken = require('../../token/index') // 生成token
 let loginControll = {
   // 验证登录
   checkLogin: (req, res, next) => {
@@ -32,7 +32,7 @@ let loginControll = {
                 res.json({
                   code: 200,
                   msg: '登录成功',
-                  token:'Bearer' + token,
+                  token: token,
                   success: true,
                 })
               })
@@ -67,7 +67,6 @@ let loginControll = {
               })
             }
           }
-
         })
       })
     }
