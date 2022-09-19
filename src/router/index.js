@@ -11,11 +11,10 @@ const routes = [
   {
     path: '/login',
     name: "Login",
-    component: Login  // 首页
+    component: Login  // 登录
   },
-
   {
-    path: '/:pathMatch(.*)*',    // 将匹配所有内容并将其放在 `$route.params.pathMatch` 下
+    path: '/:pathMatch(.*)*',    // 将匹配所有内容并将其放在 `$route.params.pathMatch` 下,在没有找到页面的情况下就触发。
     name: 'NotFound',
     component: NotFound
   },

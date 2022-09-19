@@ -5,7 +5,7 @@ router.beforeEach((to, from, next) => {
   const token = getToken()
   // 没有token情况下，强制跳回登录页
   if (!token && to.path !== '/login') {
-    return next({ path: "/login" })
+    return next({ path: "/login" }) //放行跳转
   }
   // 防止重复登录
   if (token && to.path === '/login') {
