@@ -8,3 +8,14 @@ export const login = (query) =>{
     params:query
 })
 }
+
+// 验证用户名
+export const checkUsername = (username) => {
+  return axios({
+    url:'/admin/checkUsername',
+    method:'post',
+    params:{
+      username:username
+    }
+  })
+}

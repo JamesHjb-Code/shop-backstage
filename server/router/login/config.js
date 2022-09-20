@@ -70,6 +70,38 @@ let loginControll = {
         })
       })
     }
+  },
+  // 验证用户名
+  checkUsername:(req,res,next)=>{
+    if(req.query.username!==''){
+      pool.getConnection((err,connection)=>{
+        connection.query(sql.getInfoByName,[req.query.username],(err,data)=>{
+          if(err){
+            return res.lose(err)
+          }else{
+            if(data?.length!==0){
+              res.json({
+                code:403,
+                msg:'用户名已存在,请重新填写其他用户名',
+                success:true,
+                result:data
+              })
+            }else{
+              res.json({
+                code:200,
+                msg:'该用户名可用',
+                success:true,
+                result:data
+              })
+            }
+          }
+        })
+      })
+    }
+  },
+  // 注册
+  register:(req,res,next)=>{
+    
   }
 }
 

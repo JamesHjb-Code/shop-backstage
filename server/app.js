@@ -26,7 +26,7 @@ app.use((req,res,next)=>{
 		next()
 })
 
-// // 页面路由
+// 页面路由
 app.use('/', require('./router/index'))
 
 // 调用app.listen方法

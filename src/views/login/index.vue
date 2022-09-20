@@ -2,7 +2,7 @@
   <el-row class="login-register-wrapper">
     <el-col :lg="16"
             :md="12"
-            class="left-wrapper">
+            class="left-wrapper" :class="isRegister?'register-background':'login-background'">
       <div class="text-content">
         <div class="text-head">欢迎光临</div>
         <div class="text-content">电商——后台管理系统</div>
@@ -146,7 +146,7 @@ import { User, Lock, House, Iphone } from '@element-plus/icons-vue'
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { login } from '~/api/login'
+import { login , checkUsername} from '~/api/login'
 import { prompt } from '~/compontool/util'
 import { setToken } from '~/compontool/token'
 const store = useStore()
@@ -169,6 +169,18 @@ const validatePhone = (rule, value, callback) =>{
   let verify = /^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\d{8}$/ //验证手机号码
   if(!verify.test(value)){
     callback(new Error('请输入正确手机号码'))
+  }
+}
+const validateUsername = (rule,value,callback)=>{
+  if(value!==''){
+    // 验证用户名是否存在
+    checkUsername(value).then((res)=>{
+      if(value === res.result[0].username){
+        callback(new Error(res.msg))
+      }
+    }).catch(err=>{
+      console.log(err)
+    })
   }
 }
 // 表单验证
@@ -195,6 +207,10 @@ const registerRules = {
       message: '用户名不能为空',
       trigger: 'blur',
     },
+    {
+      validator:validateUsername,
+      trigger:'blur'
+    }
   ],
   password: [
     {
@@ -293,6 +309,7 @@ const goLogin = () => {
 <style lang="scss" scoped>
 .login-register-wrapper {
   min-height: 100vh;
+  
   .left-wrapper,
   .right-wrapper {
     display: flex;
@@ -300,8 +317,15 @@ const goLogin = () => {
     justify-content: center;
     flex-direction: column;
   }
-  .left-wrapper {
-    background: #79bbff;
+
+  .left-wrapper {    
+    &.login-background{
+      background-image: linear-gradient(48deg, #8B5CF6, #EC4899);
+    }
+    &.register-background{
+      background-image: linear-gradient(48deg,#067ceb,#00bdf7);
+    }
+    
     .text-content {
       color: #fff;
       .text-head {

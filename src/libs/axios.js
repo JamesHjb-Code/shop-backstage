@@ -28,7 +28,7 @@ service.interceptors.response.use(res => {
  return res.data
 }, err => {
   // 服务器响应发生错误时的处理
-  prompt(err.response.data || '请求失败','error')
+  prompt(err || '请求失败','error')
   return Promise.reject(err)
 })
 
