@@ -146,7 +146,7 @@ import { User, Lock, House, Iphone } from '@element-plus/icons-vue'
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { login , checkUsername} from '~/api/login'
+import { login , checkUsername, register} from '~/api/login'
 import { prompt } from '~/compontool/util'
 import { setToken } from '~/compontool/token'
 const store = useStore()
@@ -169,6 +169,8 @@ const validatePhone = (rule, value, callback) =>{
   let verify = /^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\d{8}$/ //验证手机号码
   if(!verify.test(value)){
     callback(new Error('请输入正确手机号码'))
+  }else{
+    callback()
   }
 }
 const validateUsername = (rule,value,callback)=>{
@@ -176,7 +178,9 @@ const validateUsername = (rule,value,callback)=>{
     // 验证用户名是否存在
     checkUsername(value).then((res)=>{
       if(value === res.result[0].username){
-        callback(new Error(res.msg))
+         return callback(new Error(res.msg))
+      }else{
+        callback()
       }
     }).catch(err=>{
       console.log(err)
@@ -215,7 +219,7 @@ const registerRules = {
   password: [
     {
       required: true,
-      message: '用户名不能为空',
+      message: '密码不能为空',
       trigger: 'blur',
     },
   ],
@@ -248,6 +252,29 @@ const registerFormRef = ref(null)
 const loading = ref(false)
 // 是否切换注册
 const isRegister = ref(false)
+// 注册
+const onRegisterSubmit = () => {
+  registerFormRef.value.validate((valid) => {
+    if (!valid) {
+      return false
+    }
+    loading.value = true
+    register(registerForm)
+      .then((res) => {
+        // 注册成功
+        if (res.success) {
+          prompt('注册成功', 'success')
+          // 跳转到登录页
+          isRegister.value = false
+        } else {
+          prompt(res.msg, 'error')
+        }
+      })
+      .finally(() => {
+        loading.value = false
+      })
+  })
+}
 // 提交
 const onLoginSubmit = () => {
   loginFormRef.value.validate((valid) => {
@@ -274,28 +301,7 @@ const onLoginSubmit = () => {
       })
   })
 }
-const onRegisterSubmit = () => {
-  registerFormRef.value.validate((valid) => {
-    if (!valid) {
-      return false
-    }
-    loading.value = true
-    register(resgisterForm)
-      .then((res) => {
-        // 注册成功
-        if (res.success) {
-          prompt('注册成功', 'success')
-          // 跳转到登录页
-          isRegister.value = false
-        } else {
-          prompt(res.msg, 'error')
-        }
-      })
-      .finally(() => {
-        loading.value = false
-      })
-  })
-}
+
 // 跳转注册页
 const goRegister = () => {
   isRegister.value = true

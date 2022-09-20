@@ -19,3 +19,12 @@ export const checkUsername = (username) => {
     }
   })
 }
+// 注册
+export const register = (query) =>{
+  return axios({
+    url:'/admin/register',
+    method:'post',
+    params:query
+  })
+
+}

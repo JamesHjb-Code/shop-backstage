@@ -91,7 +91,7 @@ let loginControll = {
                 code:200,
                 msg:'该用户名可用',
                 success:true,
-                result:data
+                result:[{username:''}]
               })
             }
           }
@@ -101,7 +101,24 @@ let loginControll = {
   },
   // 注册
   register:(req,res,next)=>{
-    
+    if(req.query.username||req.query.password||req.query.phone||req.query.address){
+      pool.getConnection((err,connection)=>{
+        // 插入管理员信息
+        connection.query(sql.insertInfo,[req.query.username,req.query.password,req.query.phone,req.query.address],(err,data)=>{
+          if(err){
+            return res.lose(err)
+          }else{
+            if(data?.length!==0){
+              return res.json({
+                code:200,
+                msg:'注册成功',
+                success:true
+              })
+            }
+          }
+        })
+      })
+    }
   }
 }
 
