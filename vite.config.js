@@ -12,7 +12,7 @@ export default defineConfig({
   // 为开发服务器配置自定义代理规则
   server:{
     host:'127.0.0.1' ,//ip地址
-    port: 3007, // 设置服务启动端口号
+    port: 3008, // 设置服务启动端口号
     open: true, // 设置服务启动时是否自动打开浏览
     proxy:{
       '/api': {
