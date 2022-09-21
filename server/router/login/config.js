@@ -28,7 +28,7 @@ let loginControll = {
           }
           else {
             if (result.length !== 0) {
-              createToken.setToken(result[0].id,result[0].useranme).then(token=>{
+              createToken.setToken(result[0].id, result[0].useranme).then(token => {
                 res.json({
                   code: 200,
                   msg: '登录成功',
@@ -72,26 +72,26 @@ let loginControll = {
     }
   },
   // 验证用户名
-  checkUsername:(req,res,next)=>{
-    if(req.query.username!==''){
-      pool.getConnection((err,connection)=>{
-        connection.query(sql.getInfoByName,[req.query.username],(err,data)=>{
-          if(err){
+  checkUsername: (req, res, next) => {
+    if (req.query.username !== '') {
+      pool.getConnection((err, connection) => {
+        connection.query(sql.getInfoByName, [req.query.username], (err, data) => {
+          if (err) {
             return res.lose(err)
-          }else{
-            if(data?.length!==0){
+          } else {
+            if (data?.length !== 0) {
               res.json({
-                code:403,
-                msg:'用户名已存在,请重新填写其他用户名',
-                success:true,
-                result:data
+                code: 403,
+                msg: '用户名已存在,请重新填写其他用户名',
+                success: true,
+                result: data
               })
-            }else{
+            } else {
               res.json({
-                code:200,
-                msg:'该用户名可用',
-                success:true,
-                result:[{username:''}]
+                code: 200,
+                msg: '该用户名可用',
+                success: true,
+                result: [{ username: '' }]
               })
             }
           }
@@ -100,25 +100,46 @@ let loginControll = {
     }
   },
   // 注册
-  register:(req,res,next)=>{
-    if(req.query.username||req.query.password||req.query.phone||req.query.address){
-      pool.getConnection((err,connection)=>{
+  register: (req, res, next) => {
+    if (req.query.username || req.query.password || req.query.phone || req.query.address) {
+      pool.getConnection((err, connection) => {
         // 插入管理员信息
-        connection.query(sql.insertInfo,[req.query.username,req.query.password,req.query.phone,req.query.address],(err,data)=>{
-          if(err){
+        connection.query(sql.insertInfo, [req.query.username, req.query.password, req.query.phone, req.query.address], (err, data) => {
+          if (err) {
             return res.lose(err)
-          }else{
-            if(data?.length!==0){
+          } else {
+            if (data?.length !== 0) {
               return res.json({
-                code:200,
-                msg:'注册成功',
-                success:true
+                code: 200,
+                msg: '注册成功',
+                success: true
               })
             }
           }
         })
       })
     }
+  },
+  // 获取管理员信息
+  getInfo: (req, res, next) => {
+    pool.getConnection((err, connection) => {
+      // 从客户端session的密钥获取
+      // console.log(req.headers['token'])
+      createToken.getToken(req.headers['token']).then((query) => {
+        connection.query(sql.getInfoById, [query.id], (err, data) => {
+          if (err) {
+            return res.lose(err)
+          } else {
+            res.json({
+              code: 200,
+              msg: '获取管理员信息成功',
+              success: true,
+              result: data[0]
+            })
+          }
+        })
+      })
+    })
   }
 }
 

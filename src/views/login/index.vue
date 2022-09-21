@@ -289,7 +289,6 @@ const onLoginSubmit = () => {
           prompt('登录成功', 'success')
           // 存储token
           setToken(res.token)
-          store.commit('SET_USERINFO', res)
           // 跳转到首页
           router.push('/')
         } else {

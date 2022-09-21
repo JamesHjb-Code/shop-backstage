@@ -19,6 +19,7 @@ export const checkUsername = (username) => {
     }
   })
 }
+
 // 注册
 export const register = (query) =>{
   return axios({
@@ -26,5 +27,12 @@ export const register = (query) =>{
     method:'post',
     params:query
   })
+}
 
+// 获取管理员信息
+export const getInfo = ()=>{
+  return axios({
+    url:'/admin/getInfo',
+    method:'get'
+  })
 }
