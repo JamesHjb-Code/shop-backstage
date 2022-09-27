@@ -290,7 +290,7 @@ const onLoginSubmit = () => {
           // 存储token
           setToken(res.token)
           // 跳转到首页
-          router.push('/')
+          router.push('/layout')
         } else {
           prompt(res.msg, 'error')
         }

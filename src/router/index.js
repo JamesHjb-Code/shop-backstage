@@ -1,17 +1,28 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '~/views/home/index.vue'
 import Login from '~/views/login/index.vue'
 import NotFound from '~/views/error/404.vue'
 const routes = [
   {
     path: '/',
-    name: "Home",
-    component: Home  // 首页
+    component: Login  
   },
   {
     path: '/login',
     name: "Login",
     component: Login  // 登录
+  },
+  {
+    path:'/layout',
+    name:"Layout",
+    redirect:'/home',
+    component:()=>import('~/layout/index.vue'),
+    children:[
+      {
+        path:'/home',
+        name:'Home',
+        component:()=>import('~/views/home/index.vue'),
+      }
+    ]
   },
   {
     path: '/:pathMatch(.*)*',    // 将匹配所有内容并将其放在 `$route.params.pathMatch` 下,在没有找到页面的情况下就触发。
