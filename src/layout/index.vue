@@ -68,12 +68,17 @@
   </el-container>
 </template>
 <script setup>
+import { menuList } from '~/api/menu'
 import {
   Document,
   Menu as IconMenu,
   Location,
   Setting,
 } from '@element-plus/icons-vue'
+import { ref, reactive } from 'vue'
+
+// 获取菜单列表
+const menuList = ref([])
 </script>
 <Style lang="scss" scoped>
 .layout-wrapper {
