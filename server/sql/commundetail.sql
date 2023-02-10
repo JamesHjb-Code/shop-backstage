@@ -1,0 +1,15 @@
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (1, 10, '/static/pics/houseHome.jpeg', '现代简约 明亮的外表卧室背景墙');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (2, 20, '/static/pics/photodesign.jpeg', '黑白摄影设计够美观');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (3, 30, '/static/pics/starbeautyone.jpeg', '明星美女-皮肤很白又很细');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (4, 40, '/static/pics/spacedesign.jpeg', '办公室空间设计效果图');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (5, 50, '/static/pics/familydecoration.jpeg', '户型效果图-欧美风格装修');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (6, 60, '/static/pics/advertising.jpeg', '广告摄影真是好看，又是cool');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (7, 70, '/static/pics/photoacademy.jpeg', '学习摄影是一件值得的事件');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (8, 80, '/static/pics/codeone.jpeg', '编程语言为python-机器学习');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (9, 90, '/static/pics/sweetone.jpeg', '清纯甜美的女人是个漂亮');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (10, 100, '/static/pics/animeone.jpeg', '我喜欢看动漫图片，动漫美女真是好看');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (11, 110, '/static/pics/gamestwo.jpeg', '我喜欢玩游戏，可以使我本身放松');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (12, 130, '/static/pics/sportstwo.jpeg', '坚持锻炼才是王道');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (13, 140, '/static/pics/nbathree.jpeg', '科比是世界上最伟大的篮球运动员');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (14, 140, '/static/pics/nbaone.jpeg', 'NBA最强的阵容');
+INSERT INTO `commundetail`(`id`, `father_id`, `img`, `text`) VALUES (15, 110, '/static/pics/gamesone.jpeg', '英雄联盟是最火热的大型游戏');
