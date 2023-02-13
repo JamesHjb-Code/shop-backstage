@@ -1,9 +1,9 @@
-INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (1, '首页', 'home', NULL, NULL);
-INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (101, '商品管理', 'goods', NULL, NULL);
-INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (102, '用户管理', 'user', NULL, NULL);
-INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (103, '权限管理', 'authority', NULL, NULL);
-INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (104, '数据统计', 'statistics', NULL, NULL);
-INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (105, '订单管理', 'order', NULL, NULL);
+INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (1, '首页', 'home', NULL, 0);
+INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (101, '商品管理', 'goods', NULL, 0);
+INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (102, '用户管理', 'user', NULL, 0);
+INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (103, '权限管理', 'authority', NULL, 0);
+INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (104, '数据统计', 'statistics', NULL, 0);
+INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (105, '订单管理', 'order', NULL, 0);
 INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (106, '商品列表', 'goods-list', NULL, 101);
 INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (107, '用户列表', 'user-list', NULL, 102);
 INSERT INTO `menu`(`id`, `authName`, `path`, `icon`, `parentId`) VALUES (108, '订单列表', 'order-list', NULL, 105);

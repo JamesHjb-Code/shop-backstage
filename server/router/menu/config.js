@@ -5,19 +5,21 @@
  */
 const mysql = require('mysql') //引入mysql模块
 const mysqlConfig = require('../../db/mysql') // 引入mysql连接池
+const sql = require('./sql') // 引入封装sql语句
 const pool = mysql.createPool(mysqlConfig) // 创建mysql连接池
 
 // 菜单-数组转换树结构
-const menuTree = (result)=>{
-  const child = result.filter(item => item.id === parentId)
-  if(!child.length){
-    return false
+const menuTree = (data,parentId)=>{
+  function _handleTree (parentId) {
+    return data.reduce((pre, cur) => {
+      if (cur.parentId === parentId) {
+        cur.children = loop(cur.id)
+        pre.push(cur)
+      }
+      return pre
+    }, [])
   }
-  return child.map(node => ({
-    ...node,
-    children: convertToTree(flatData, node.id)
-}))
-
+  return _handleTree(parentId)
 }
 
 
@@ -33,7 +35,7 @@ let menuControll = {
             code: 200,
             msg: '获取菜单列表信息成功',
             success: true,
-            result: menuTree(data)
+            result: menuTree(data,0)
           })
         }
       })
