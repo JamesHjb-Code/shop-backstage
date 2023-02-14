@@ -17,48 +17,30 @@
         <el-menu active-text-color="#ffd04b"
                  background-color="#545c64"
                  class="el-menu-vertical-demo"
-                 default-active="2"
                  text-color="#fff"
-                 @open="handleOpen"
-                 @close="handleClose">
-          <el-sub-menu index="1">
-            <template #title>
-              <el-icon>
-                <location />
-              </el-icon>
-              <span>Navigator One</span>
-            </template>
-            <el-menu-item-group title="Group One">
-              <el-menu-item index="1-1">item one</el-menu-item>
-              <el-menu-item index="1-2">item two</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="Group Two">
-              <el-menu-item index="1-3">item three</el-menu-item>
-            </el-menu-item-group>
-            <el-sub-menu index="1-4">
-              <template #title>item four</template>
-              <el-menu-item index="1-4-1">item one</el-menu-item>
+                 router>
+          <!-- 一级菜单 -->
+          <template v-for="item in menu.list"
+                    :key="item.id">
+            <el-sub-menu :index="item.path">
+              <template #title>
+                <el-icon>
+                  <location />
+                </el-icon>
+                <span>{{item.authName}}</span>
+              </template>
+              <!-- 二级菜单 -->
+              <el-menu-item :index="item.id+'-'+childItem.id"
+                          v-for="childItem in item.children"
+                          :key="childItem.id">
+              <template #title>
+                <i class="el-icon-menu"></i>
+                <span>{{childItem.authName}}</span>
+              </template>
+            </el-menu-item>
             </el-sub-menu>
-          </el-sub-menu>
-          <el-menu-item index="2">
-            <el-icon>
-              <icon-menu />
-            </el-icon>
-            <span>Navigator Two</span>
-          </el-menu-item>
-          <el-menu-item index="3"
-                        disabled>
-            <el-icon>
-              <document />
-            </el-icon>
-            <span>Navigator Three</span>
-          </el-menu-item>
-          <el-menu-item index="4">
-            <el-icon>
-              <setting />
-            </el-icon>
-            <span>Navigator Four</span>
-          </el-menu-item>
+          </template>
+
         </el-menu>
       </el-aside>
       <el-main>
@@ -75,12 +57,28 @@ import {
   Location,
   Setting,
 } from '@element-plus/icons-vue'
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 
 // 获取菜单列表
-// const menuList = ref([])
+/* 
+  1.ref和reactive都是定义响应式数据，ref参数可以接受基本数据类型也可以接受引用类型，而reactive只能接收对象或数组等复杂类型
+  2.当ref使用时.value来访问值
+  3.ref创建的数据返回类型为RefImpl ，而RefImpl._value是一个 reactive 代理的原始对象
+*/
+const menu = reactive({
+      list: []
+    })
+// let menuInfo = ref([])
+onMounted(() => {
+  getMenuInfo()
+})
+const getMenuInfo = async () => {
+  let res = await menuList()
+  menu.list = res.result
+  // console.log(menuInfoList)
+}
 </script>
-<Style lang="scss" scoped>
+<style lang="scss" scoped>
 .layout-wrapper {
   height: 100%;
   .logo-wrapper {
@@ -115,4 +113,4 @@ import { ref, reactive } from 'vue'
     background: rgb(234, 237, 241);
   }
 }
-</Style>
+</style>

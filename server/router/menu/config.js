@@ -13,7 +13,7 @@ const menuTree = (data,parentId)=>{
   function _handleTree (parentId) {
     return data.reduce((pre, cur) => {
       if (cur.parentId === parentId) {
-        cur.children = loop(cur.id)
+        cur.children = _handleTree(cur.id)
         pre.push(cur)
       }
       return pre
