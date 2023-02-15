@@ -23,12 +23,9 @@
   </el-container>
 </template>
 <script setup>
-import { createApp } from 'vue'
+// 局部注册-导入组件可以直接在模板即可，不需要注册。
 import MenuList from '~/components/Menu.vue'
-const app = createApp({})
-app.component({
-  MenuList,
-})
+
 </script>
 <style lang="scss" scoped>
 .layout-wrapper {

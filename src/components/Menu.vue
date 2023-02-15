@@ -12,7 +12,7 @@
                    v-if="item.children.length">
         <template #title>
           <el-icon>
-            <location />
+            <component :is="item.icon"></component>
           </el-icon>
           <span>{{item.authName}}</span>
         </template>
@@ -21,7 +21,6 @@
                       v-for="childItem in item.children"
                       :key="childItem.id">
           <template #title>
-            <i class="el-icon-menu"></i>
             <span>{{childItem.authName}}</span>
           </template>
         </el-menu-item>
@@ -41,12 +40,6 @@
 </template>
 <script setup>
 import { menuList } from '~/api/menu'
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from '@element-plus/icons-vue'
 import { ref, reactive, onMounted } from 'vue'
 // 获取菜单列表
 /* 
