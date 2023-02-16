@@ -2,8 +2,8 @@
   <div class="header-wrapper">
     <div class="operation">
       <el-icon @click="$store.commit('SET_MenuWidth')">
-        <Expand v-if="$store.state.menuWidth==='200px'"/>
-        <Fold v-else/>
+        <Fold v-if="$store.state.menuWidth==='200px'"/>
+        <Expand v-else/>
       </el-icon>
     </div>
     <div class="left-logo">

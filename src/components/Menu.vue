@@ -29,10 +29,10 @@
       </el-sub-menu>
       <el-menu-item :index="item.path"
                     v-else>
+        <el-icon>
+          <component :is="item.icon"></component>
+        </el-icon>
         <template #title>
-          <el-icon>
-            <location />
-          </el-icon>
           {{ item.authName }}
         </template>
       </el-menu-item>
