@@ -1,20 +1,11 @@
 <template>
   <el-container class="layout-wrapper">
-    <el-aside width="200px">
+    <el-aside :style="{width:$store.state.menuWidth}">
       <menu-list></menu-list>
     </el-aside>
     <el-container>
       <el-header>
-        <div class="logo-wrapper">
-          <div class="left-logo">
-            <img src="/vite.svg"
-                 class="img-logo" />
-            <div class="text">电商管理系统</div>
-          </div>
-          <div class="right-operation">
-            <el-button type="primary">退出</el-button>
-          </div>
-        </div>
+        <Header></Header>
       </el-header>
       <el-main>
         <router-view></router-view>
@@ -25,34 +16,18 @@
 <script setup>
 // 局部注册-导入组件可以直接在模板即可，不需要注册。
 import MenuList from '~/components/Menu.vue'
-
+import Header from '~/components/Header.vue'
 </script>
 <style lang="scss" scoped>
 .layout-wrapper {
   height: 100%;
-  .logo-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    color: #fff;
-    .left-logo {
-      display: flex;
-      .img-logo {
-        width: 60px;
-        height: 40px;
-      }
-      .text {
-        font-size: 20px;
-        line-height: 40px;
-      }
-    }
-  }
+
   /* 修改布局结构 */
   .el-header {
     background: rgb(55, 61, 65);
   }
   .el-aside {
+    transition: all 0.2s;
     background: rgb(51, 55, 68);
   }
   .el-main {

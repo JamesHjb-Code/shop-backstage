@@ -4,6 +4,8 @@
            class="el-menu-vertical-demo"
            :collapse="isCollapse"
            text-color="#fff"
+           :collapse-transition="false"
+           unique-opened
            router>
     <!-- 一级菜单 -->
     <template v-for="item in menu.list"
@@ -35,12 +37,14 @@
         </template>
       </el-menu-item>
     </template>
-
   </el-menu>
 </template>
 <script setup>
+import { useStore } from 'vuex'
 import { menuList } from '~/api/menu'
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, computed } from 'vue'
+
+const store = useStore()
 // 获取菜单列表
 /* 
   1.ref和reactive都是定义响应式数据，ref参数可以接受基本数据类型也可以接受引用类型，而reactive只能接收对象或数组等复杂类型
@@ -52,7 +56,13 @@ const menu = reactive({
   list: [],
 })
 // 是否展开/收缩菜单
-const isCollapse = ref(false)
+const isCollapse = computed(() => {
+  if (store.state.menuWidth === '200px') {
+    return false
+  } else {
+    return true
+  }
+})
 
 onMounted(() => {
   getMenuInfo()
