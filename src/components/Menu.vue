@@ -41,10 +41,12 @@
 </template>
 <script setup>
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import { menuList } from '~/api/menu'
 import { ref, reactive, onMounted, computed } from 'vue'
 
 const store = useStore()
+const router = useRouter()
 // 获取菜单列表
 /* 
   1.ref和reactive都是定义响应式数据，ref参数可以接受基本数据类型也可以接受引用类型，而reactive只能接收对象或数组等复杂类型

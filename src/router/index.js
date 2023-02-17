@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Login from '~/views/login/index.vue'
+import Login from '~/views/pages/login/index.vue'
 import NotFound from '~/views/error/404.vue'
 const routes = [
   {
@@ -20,7 +20,7 @@ const routes = [
       {
         path:'/home',
         name:'Home',
-        component:()=>import('~/views/home/index.vue'),
+        component:()=>import('~/views/pages/home/index.vue'),
       }
     ]
   },
