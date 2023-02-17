@@ -2,6 +2,7 @@
   <el-menu active-text-color="#ffd04b"
            background-color="#545c64"
            class="el-menu-vertical-demo"
+           :default-active="defaultActive"
            :collapse="isCollapse"
            text-color="#fff"
            :collapse-transition="false"
@@ -10,7 +11,7 @@
     <!-- 一级菜单 -->
     <template v-for="item in menu.list"
               :key="item.id">
-      <el-sub-menu :index="item.path"
+      <el-sub-menu :index="item.id"
                    v-if="item.children.length">
         <template #title>
           <el-icon>
@@ -19,7 +20,7 @@
           <span>{{item.authName}}</span>
         </template>
         <!-- 二级菜单 -->
-        <el-menu-item :index="item.id+'-'+childItem.id"
+        <el-menu-item :index="childItem.path"
                       v-for="childItem in item.children"
                       :key="childItem.id">
           <template #title>
@@ -57,6 +58,8 @@ const router = useRouter()
 const menu = reactive({
   list: [],
 })
+// 默认值是当前的路由
+const defaultActive = ref(router.path)
 // 是否展开/收缩菜单
 const isCollapse = computed(() => {
   if (store.state.menuWidth === '200px') {
@@ -70,7 +73,6 @@ onMounted(() => {
   getMenuInfo()
 })
 const getMenuInfo = async () => {
-  console.log(123)
   let res = await menuList()
   menu.list = res.result
 }
