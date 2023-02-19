@@ -15,8 +15,8 @@
 </template>
 <script setup>
 // 局部注册-导入组件可以直接在模板即可，不需要注册。
-import MenuList from '~/components/Menu.vue'
-import Header from '~/components/Header.vue'
+import MenuList from '~/components/splitLayout/Menu.vue'
+import Header from '~/components/splitLayout/Header.vue'
 </script>
 <style lang="scss" scoped>
 .layout-wrapper {
