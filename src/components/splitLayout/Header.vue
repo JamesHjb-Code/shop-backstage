@@ -12,12 +12,14 @@
       <div class="text">电商管理系统</div>
     </div>
     <div class="right-operation">
+      <operation></operation>
       <user-info></user-info>
     </div>
   </div>
 </template>
 <script setup>
 import UserInfo from '~/components/splitLayout/UserInfo.vue'
+import Operation from '~/components/splitLayout/operation.vue'
 </script>
 <style lang="scss" scoped>
 .header-wrapper {
