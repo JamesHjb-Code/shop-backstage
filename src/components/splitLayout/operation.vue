@@ -17,19 +17,31 @@ import screenfull from 'screenfull'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 const motifVal = ref(null)
 const isFull = ref(screenfull.isFullscreen)
+
 onMounted(() => {
   initSceen()
+  window.addEventListener('keydown', keydowns, true)
 })
+
 onBeforeUnmount(() => {
   offSceen()
 })
+
 const changleFull = () => {
   if (screenfull.isEnabled) {
     screenfull.toggle()
   }
 }
+
 const changleIsFull = () => {
   isFull.value = screenfull.isFullscreen
+}
+const keydowns = (event) => {
+  // 监听按键f11
+  if (event.keyCode === 122) {
+    event.returnValue = false
+    changleFull() //触发全屏的按钮
+  }
 }
 const initSceen = () => {
   if (screenfull.isEnabled) {
@@ -44,7 +56,7 @@ const offSceen = () => {
 </script>
 <style lang="scss" scoped>
 .operation-wrapper {
-  width: 5vw;
+  width: 80px;
   display: flex;
   align-content: center;
   align-items: center;
