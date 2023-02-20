@@ -5,6 +5,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'element-plus/dist/index.css'
 import router from './router'
 import store from './store'
+import "./assets/iconfont/iconfont.js"
 import "./guardPermission"
 // 挂载到应用上
 const app = createApp(App)
