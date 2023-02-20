@@ -3,12 +3,8 @@
     <el-switch v-model="motifVal" />
     <div class="screen-icon"
          @click="changleFull()">
-      <img class="icon"
-           v-if="isFull"
-           src="../../assets/exit-screen.svg">
-      <img class="icon"
-           v-else
-           src="../../assets/full-screen.svg">
+    <svg-icon v-if="isFull" className="exit-screen"></svg-icon>
+    <svg-icon v-else className="full-screen"></svg-icon>
     </div>
   </div>
 </template>
