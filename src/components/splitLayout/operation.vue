@@ -1,12 +1,11 @@
 <template>
   <div class="operation-wrapper">
-    <el-switch v-model="motifVal"
+    <el-switch v-model="motifVal.isDark"
                class="mt-2"
                style="margin-left: 24px"
                inline-prompt
                :active-icon="Moon"
-               :inactive-icon="Sunny"
-               @change="changeTheme()" />
+               :inactive-icon="Sunny" />
     <div class="screen-icon"
          @click="changleFull()">
       <svg-icon v-if="isFull"
@@ -20,8 +19,13 @@
 import screenfull from 'screenfull'
 import { Sunny, Moon } from '@element-plus/icons-vue'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-const motifVal = ref(false)
+import { useDark } from '@vueuse/core'
 const isFull = ref(screenfull.isFullscreen)
+// 2. 使用useDark
+const isDark = useDark()
+const motifVal = ref({
+  isDark: isDark,
+})
 
 onMounted(() => {
   initSceen()

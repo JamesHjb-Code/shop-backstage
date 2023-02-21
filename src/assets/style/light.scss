@@ -1,0 +1,22 @@
+html{
+  --ak-header-bg-color: #ffffff;
+  --ak-main-bg-color: #f0f2f5;
+  --ak-bg-color: #ffffff;
+  --ak-default-font-color: #616161;
+  --ak-siteName-color: #ffffff;
+  --ak-mouseEnter-color: #000000;
+  --ak-tag-check-color: #409eff;
+  --ak-tag-nullCheck-color: #ffffff;
+  --ak-tag-nullCheck-border-color: #e4e7ed;
+  --ak-tag-nullCheck-font-color: rgb(97, 97, 97);
+  --ak-sidebar-color: #001529;
+  .el-header{
+    background-color: var(--ak-header-bg-color);
+    border-bottom: 1px solid var(--el-border-color-light);
+    color:var(--ak-mouseEnter-color);
+  }
+  .el-main {
+    background-color: var(--ak-main-bg-color);
+  }
+  color:#000;
+}

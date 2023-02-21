@@ -26,7 +26,6 @@ import Operation from '~/components/splitLayout/operation.vue'
   display: flex;
   align-items: center;
   height: 100%;
-  color: #fff;
   .operation {
     font-size: 30px;
     cursor: pointer;

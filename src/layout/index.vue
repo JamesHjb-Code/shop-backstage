@@ -21,17 +21,12 @@ import Header from '~/components/splitLayout/Header.vue'
 <style lang="scss" scoped>
 .layout-wrapper {
   height: 100%;
-
-  /* 修改布局结构 */
-  .el-header {
-    background: rgb(55, 61, 65);
-  }
   .el-aside {
     transition: all 0.2s;
     background: rgb(51, 55, 68);
   }
   .el-main {
-    background: rgb(234, 237, 241);
+    // background: rgb(234, 237, 241);
   }
 }
 </style>

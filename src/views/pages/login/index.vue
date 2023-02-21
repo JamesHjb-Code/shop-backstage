@@ -141,7 +141,7 @@
     </el-col>
   </el-row>
 </template>
-<script setup>
+<script setup name="login">
 import { User, Lock, House, Iphone } from '@element-plus/icons-vue'
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
