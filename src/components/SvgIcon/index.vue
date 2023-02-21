@@ -8,8 +8,9 @@
 <script setup>
 import {computed} from 'vue'
 
+// props:className：icon名称，color：颜色
 const props = defineProps({
-  className:String,
+  className:String, 
   color:String
 })
 

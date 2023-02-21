@@ -15,6 +15,7 @@ app.use(router)
 app.use(store)
 app.component('svg-icon', SvgIcon) // 全局注册SvgIcon组件
 app.mount('#app')
+
 // 全局注册-icon图标
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)

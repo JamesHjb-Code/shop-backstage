@@ -1,17 +1,26 @@
 <template>
   <div class="operation-wrapper">
-    <el-switch v-model="motifVal" />
+    <el-switch v-model="motifVal"
+               class="mt-2"
+               style="margin-left: 24px"
+               inline-prompt
+               :active-icon="Moon"
+               :inactive-icon="Sunny"
+               @change="changeTheme()" />
     <div class="screen-icon"
          @click="changleFull()">
-    <svg-icon v-if="isFull" className="exit-screen"></svg-icon>
-    <svg-icon v-else className="full-screen"></svg-icon>
+      <svg-icon v-if="isFull"
+                className="exit-screen"></svg-icon>
+      <svg-icon v-else
+                className="full-screen"></svg-icon>
     </div>
   </div>
 </template>
 <script setup>
 import screenfull from 'screenfull'
+import { Sunny, Moon } from '@element-plus/icons-vue'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-const motifVal = ref(null)
+const motifVal = ref(false)
 const isFull = ref(screenfull.isFullscreen)
 
 onMounted(() => {
@@ -23,15 +32,19 @@ onBeforeUnmount(() => {
   offSceen()
 })
 
+/* ——切换主题-白天/黑暗模式—— */
+const changeTheme = () => {
+  console.log(motifVal.value)
+}
+/* end */
+
+/* ——处理全屏功能—— */
 const changleFull = () => {
   if (screenfull.isEnabled) {
     screenfull.toggle()
   }
 }
 
-const changleIsFull = () => {
-  isFull.value = screenfull.isFullscreen
-}
 const keydowns = (event) => {
   // 监听按键f11
   if (event.keyCode === 122) {
@@ -39,6 +52,11 @@ const keydowns = (event) => {
     changleFull() //触发全屏的按钮
   }
 }
+
+const changleIsFull = () => {
+  isFull.value = screenfull.isFullscreen
+}
+
 const initSceen = () => {
   if (screenfull.isEnabled) {
     screenfull.on('change', changleIsFull)
@@ -49,6 +67,7 @@ const offSceen = () => {
     screenfull.off('change', changleIsFull)
   }
 }
+/* end */
 </script>
 <style lang="scss" scoped>
 .operation-wrapper {
