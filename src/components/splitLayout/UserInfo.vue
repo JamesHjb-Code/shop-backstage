@@ -18,7 +18,7 @@
   </el-dropdown>
 </template>
 
-<script setup>
+<script setup name="UserInfo">
 
 </script>
 

@@ -40,7 +40,7 @@
     </template>
   </el-menu>
 </template>
-<script setup>
+<script setup name="Menu">
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { menuList } from '~/api/menu'

@@ -5,7 +5,7 @@
     <use :xlink:href="iconName"></use>
   </svg>
 </template>
-<script setup>
+<script setup name="SvgIcon">
 import {computed} from 'vue'
 
 // props:className：icon名称，color：颜色

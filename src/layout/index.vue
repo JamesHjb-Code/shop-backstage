@@ -13,7 +13,7 @@
     </el-container>
   </el-container>
 </template>
-<script setup>
+<script setup name="layout">
 // 局部注册-导入组件可以直接在模板即可，不需要注册。
 import MenuList from '~/components/splitLayout/Menu.vue'
 import Header from '~/components/splitLayout/Header.vue'

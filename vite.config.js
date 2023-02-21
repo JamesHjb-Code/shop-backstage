@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { svgBuilder} from './src/plugins/svgBuilder.js'
+import { svgBuilder } from './src/plugins/svgBuilder.js'
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+
 import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,6 +27,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    vueSetupExtend(), // vue3 setup风格下无法添加name问题
     svgBuilder('./src/assets/svg/') // 这里已经将src/icons/svg/下的svg全部导入
   ]
 })

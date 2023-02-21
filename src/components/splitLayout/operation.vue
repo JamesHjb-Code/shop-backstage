@@ -16,7 +16,7 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup name="Operation">
 import screenfull from 'screenfull'
 import { Sunny, Moon } from '@element-plus/icons-vue'
 import { ref, onMounted, onBeforeUnmount } from 'vue'

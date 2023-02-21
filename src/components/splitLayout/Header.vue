@@ -17,7 +17,7 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup name="Header">
 import UserInfo from '~/components/splitLayout/UserInfo.vue'
 import Operation from '~/components/splitLayout/operation.vue'
 </script>
