@@ -1,22 +1,17 @@
-html{
-  --ak-header-bg-color: #ffffff;
-  --ak-main-bg-color: #f0f2f5;
-  --ak-bg-color: #ffffff;
-  --ak-default-font-color: #616161;
-  --ak-siteName-color: #ffffff;
-  --ak-mouseEnter-color: #000000;
-  --ak-tag-check-color: #409eff;
-  --ak-tag-nullCheck-color: #ffffff;
-  --ak-tag-nullCheck-border-color: #e4e7ed;
-  --ak-tag-nullCheck-font-color: rgb(97, 97, 97);
-  --ak-sidebar-color: #001529;
-  .el-header{
-    background-color: var(--ak-header-bg-color);
+html {
+  --aj-header-color: #ffffff;
+  --aj-main-color: #f0f2f5;
+  --aj-bg-color: #ffffff;
+  --aj-color: #000000;
+  color:var(--aj-color);
+  .el-header {
+    background-color: var(--aj-header-color);
     border-bottom: 1px solid var(--el-border-color-light);
-    color:var(--ak-mouseEnter-color);
   }
   .el-main {
-    background-color: var(--ak-main-bg-color);
+    background-color: var(--aj-main-color);
   }
-  color:#000;
+  // .svg-icon{
+  //   fill:var(--aj-color);
+  // }
 }

@@ -9,7 +9,7 @@
     <div class="screen-icon"
          @click="changleFull()">
       <svg-icon v-if="isFull"
-                className="exit-screen"></svg-icon>
+                className="exit-screen" ></svg-icon>
       <svg-icon v-else
                 className="full-screen"></svg-icon>
     </div>

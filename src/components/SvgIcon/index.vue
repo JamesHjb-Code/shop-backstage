@@ -1,30 +1,31 @@
 <template>
   <!-- 封装Icon -->
-  <svg class="svg-icon"
-       aria-hidden="true">
+  <svg :class="svgClass"
+       aria-hidden="true"
+       v-on="$attrs"
+       >
     <use :xlink:href="iconName"></use>
   </svg>
 </template>
 <script setup name="SvgIcon">
-import {computed} from 'vue'
+import { ref, computed } from 'vue'
 
-// props:className：icon名称，color：颜色
+// props:className：icon名称
 const props = defineProps({
-  className:String, 
-  color:String
+  className: String,
 })
 
-const iconName = computed(()=>{
+const iconName = computed(() => {
   return `#icon-${props.className}`
 })
-const color = computed(()=>{
-  if(props.className){
+
+const svgClass = computed(() => {
+  if (props.className) {
     return `svg-icon icon-${props.className}`
-  }else{
+  } else {
     return 'svg-icon'
   }
 })
-
 </script>
 <style lang="scss" scoped>
 .svg-icon {
@@ -34,5 +35,4 @@ const color = computed(()=>{
   fill: currentColor;
   overflow: hidden;
 }
-
 </style>

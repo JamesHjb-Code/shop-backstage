@@ -7,6 +7,7 @@ import './assets/style/theme.scss'
 import router from './router'
 import store from './store'
 import SvgIcon from './components/SvgIcon/index.vue'
+import listenStorage from './plugins/listenLocalStorage.js'
 import "./guardPermission"
 // 挂载到应用上
 const app = createApp(App)
@@ -14,6 +15,7 @@ const app = createApp(App)
 app.use(ElementPlus)
 app.use(router)
 app.use(store)
+app.use(listenStorage)
 app.component('svg-icon', SvgIcon) // 全局注册SvgIcon组件
 app.mount('#app')
 
