@@ -1,21 +1,41 @@
-html.dark{
-  ----aj-header-color:#141414;
+html.dark {
+  ----aj-header-color: #141414;
   --aj-main-color: #000000;
   --aj-color: #ffffff;
-  --aj-bg-menu-color:#000000;
-  color:var(--aj-color);
-  .el-header{
+  --aj-bg-menu-color: #000000;
+  --aj-bg-menu-hover-color:#5e6161;
+  color: var(--aj-color);
+
+  .el-header {
     background-color: var(----aj-header-color);
   }
+
   .el-main {
     background-color: var(--aj-main-color);
   }
-  .el-aside{
+
+  .el-aside {
     background-color: var(--aj-bg-menu-color);
 
   }
-  .el-menu{
-    border-right:1px solid var(--el-border-color-light);
+
+  .el-menu {
+    border-right: 1px solid var(--el-border-color-light);
     background-color: var(--aj-bg-menu-color);
+
+    .el-sub-menu__title {
+      color: var(--aj-color) !important;
+    }
+
+    .el-menu-item {
+      color: var(--aj-color);
+    }
+    .el-menu-item:hover,.el-sub-menu__title:hover{
+      background-color: var( --aj-bg-menu-hover-color);
+    }
+    .is-active {
+      color: var(--el-menu-active-color);
+    }
   }
+
 }

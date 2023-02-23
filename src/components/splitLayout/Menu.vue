@@ -79,6 +79,6 @@ const getMenuInfo = async () => {
 <style lang="scss" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  min-height: 400px;
+  height:100vh;
 }
 </style>

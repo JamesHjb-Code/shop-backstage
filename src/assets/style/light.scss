@@ -24,5 +24,15 @@ html {
     border-right: 1px solid var(--el-border-color-light);
     background-color: var(--aj-bg-menu-color);
 
+    .el-sub-menu__title{
+      color: var(--aj-color) !important; 
+    }
+    .el-menu-item{
+      color: var(--aj-color); 
+  
+    }
+    .is-active {
+      color: var(--el-menu-active-color);
+    }
   }
 }
