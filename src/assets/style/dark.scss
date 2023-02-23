@@ -2,6 +2,7 @@ html.dark{
   ----aj-header-color:#141414;
   --aj-main-color: #000000;
   --aj-color: #ffffff;
+  --aj-bg-menu-color:#000000;
   color:var(--aj-color);
   .el-header{
     background-color: var(----aj-header-color);
@@ -9,7 +10,12 @@ html.dark{
   .el-main {
     background-color: var(--aj-main-color);
   }
-  // .svg-icon{
-  //   fill:var(--aj-color);
-  // }
+  .el-aside{
+    background-color: var(--aj-bg-menu-color);
+
+  }
+  .el-menu{
+    border-right:1px solid var(--el-border-color-light);
+    background-color: var(--aj-bg-menu-color);
+  }
 }

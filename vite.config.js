@@ -28,6 +28,6 @@ export default defineConfig({
   plugins: [
     vue(),
     vueSetupExtend(), // vue3 setup风格下无法添加name问题
-    svgBuilder('./src/assets/svg/') // 这里已经将src/icons/svg/下的svg全部导入
+    svgBuilder('./src/assets/svg/'), // 这里已经将src/icons/svg/下的svg全部导入
   ]
 })

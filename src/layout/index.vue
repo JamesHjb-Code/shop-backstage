@@ -23,10 +23,6 @@ import Header from '~/components/splitLayout/Header.vue'
   height: 100%;
   .el-aside {
     transition: all 0.2s;
-    background: rgb(51, 55, 68);
-  }
-  .el-main {
-    // background: rgb(234, 237, 241);
   }
 }
 </style>
