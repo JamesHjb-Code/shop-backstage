@@ -8,7 +8,7 @@
   </svg>
 </template>
 <script setup name="SvgIcon">
-import { ref, computed } from 'vue'
+import { ref, computed ,watch} from 'vue'
 
 // props:className：icon名称
 const props = defineProps({
