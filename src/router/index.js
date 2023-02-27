@@ -12,16 +12,25 @@ const routes = [
         path:'/home',
         name:'home',
         component:()=>import('~/views/pages/home/index.vue'),
+        meta:{
+          title:'首页',
+        }
       },
       {
         path:'/goods-list',
         name:'GoodsList',
         component:()=>import('~/views/pages/goods/goods-list.vue'),
+        meta:{
+          title:'商品列表',
+        }
       },
       {
         path:'/goods-type',
         name:'GoodsType',
         component:()=>import('~/views/pages/goods/goods-type.vue'),
+        meta:{
+          title:'商品分类',
+        }
       }
     ]
   },

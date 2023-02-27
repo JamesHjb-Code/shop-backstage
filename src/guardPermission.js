@@ -12,8 +12,8 @@ router.beforeEach(async (to, from, next) => {
   if (token && to.path === '/login') {
     return next({ path: from.path ? from.path : '/' })
   }
-  // 如果管理员登录，自动获取管理员信息，并存储在vuex当中
-  if(token){
+  // 如果tohen且没有用户信息，自动获取管理员信息，并存储在vuex当中
+  if(token&&!store.state.userInfo.username){
     await store.dispatch("getInfo")
   }
   next()
