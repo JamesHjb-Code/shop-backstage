@@ -1,7 +1,7 @@
 <template>
 
 </template>
-<script setup name="list">
+<script setup name="table">
 
 </script>
 <style lang="scss" scoped>
