@@ -31,6 +31,13 @@ const routes = [
         meta:{
           title:'商品分类',
         }
+      },{
+        path:'/user-list',
+        name:'UserList',
+        component:()=>import('~/views/pages/user/user-list.vue'),
+        meta:{
+          title:'用户列表',
+        }
       }
     ]
   },
